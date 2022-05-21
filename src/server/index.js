@@ -1,9 +1,10 @@
 const path = require('path')
 const express = require('express')
-const cors = require('cors')
-const dotenv = require('dotenv');
 
-dotenv.config();
+const dotenv = require('dotenv')
+dotenv.config({path: __dirname + '/.env'})
+  
+const cors = require('cors')
 
 const app = express()
 
@@ -11,21 +12,14 @@ app.use(cors())
 
 app.use(express.static('dist'))
 
-
-console.log(__dirname)
-
 app.get('/', function (req, res) {
     // res.sendFile('dist/index.html')
     res.sendFile(path.resolve('dist/index.html'))
 })
 
-console.log(process.env.API_KEY)
-
 const key_data = {
     key: process.env.API_KEY
 }
-
-console.log(key_data)
 
 app.get('/key', function (req, res) {
     // res.sendFile('dist/index.html')
