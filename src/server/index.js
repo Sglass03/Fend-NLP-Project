@@ -1,7 +1,6 @@
-var path = require('path')
+const path = require('path')
 const express = require('express')
-var cors = require('cors')
-const mockAPIResponse = require('./mockAPI.js')
+const cors = require('cors')
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -20,9 +19,13 @@ app.get('/', function (req, res) {
     res.sendFile(path.resolve('dist/index.html'))
 })
 
+console.log(process.env.API_KEY)
+
 const key_data = {
-    key: "7a3532bda0f42b49ae838c5ed81a398c"
+    key: process.env.API_KEY
 }
+
+console.log(key_data)
 
 app.get('/key', function (req, res) {
     // res.sendFile('dist/index.html')
